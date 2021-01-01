@@ -75,7 +75,7 @@ author_pages <- aggregate(pages ~ author, books, sum)
 author_pages <- author_pages[order(author_pages$pages, decreasing = TRUE), ]
 rownames(author_pages) <- 1:nrow(author_pages)
 simp_author_pages <- author_pages[1:5, ]
-simp_author_pages[6, "author"] <- "Other"
+simp_author_pages[6, "author"] <- "Other (17)"
 simp_author_pages[6, "pages"] <- sum(author_pages[6:nrow(author_pages), "pages"])
 simp_author_pages$author <- factor(simp_author_pages$author, levels = simp_author_pages$author)
 simp_author_bar <- ggplot(data = simp_author_pages) +
@@ -93,10 +93,19 @@ print(simp_author_bar)
 # Cleaned up histogram of page length
 page_hist_clean <- ggplot(data = books) +
   theme_fivethirtyeight(base_size = 24) +
-  geom_histogram(mapping = aes(x = pages, fill = "orange"),
+  geom_histogram(mapping = aes(x = pages), fill = "#f7766d",
                  binwidth = 200, boundary = 0, closed = "left") +
   scale_x_continuous(breaks = seq(0, 1000, 200)) +
   scale_y_continuous(breaks = seq(0, 18, 3)) +
-  labs(title = "Distribution of Book Page Lengths") +
-  theme(legend.position = "none")
+  labs(title = "Distribution of Book Page Lengths")
 print(page_hist_clean)
+
+# Histogram of year published
+year_hist <- ggplot(data = books) +
+  theme_fivethirtyeight(base_size = 24) +
+  geom_histogram(mapping = aes(x = year.published), fill = "#6d904f",
+                 binwidth = 10, boundary = 1920, closed = "left") +
+  scale_x_continuous(breaks = seq(1920, 2020, 20)) +
+  scale_y_continuous(breaks = seq(0, 15, 3)) +
+  labs(title = "Distribution of Publication Years")
+print(year_hist)
