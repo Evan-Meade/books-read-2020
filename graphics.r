@@ -1,3 +1,10 @@
+# 
+# Evan Meade, 2021
+# 
+# The following is code to generate graphics which describe my reading
+# habits in 2020.
+# 
+
 # Import libraries
 library(ggplot2)
 library(RColorBrewer)
@@ -13,6 +20,7 @@ books <- read.csv("books_read.csv")
 
 # Basic statistics
 summary(books)
+print(paste0("Estimated hours read: ", sum(books$pages) / 25))
 
 # Histogram of page length
 page_hist <- ggplot(data = books) +
@@ -45,11 +53,14 @@ total_pages_line <- ggplot(data = books) +
 print(total_pages_line)
 
 # Pages read in order
-pages_line <- ggplot(data = books) +
-  geom_line(mapping = aes(x = order, y = pages)) +
-  labs(title = "Page Length in Oder")
-print(pages_line)
-
+books$pages.mean <- cut(books$pages, c(0, page_mean, max(books$pages)),
+                        labels = c("below", "above"))
+pages_bar <- ggplot(data = books) +
+  geom_bar(mapping = aes(x = order, y = pages, fill = pages.mean),
+           stat = "identity") +
+  geom_hline(yintercept = mean(books$pages)) +
+  labs(title = "Page Length in Order")
+print(pages_bar)
 
 # Pages per author
 pages_bar <- ggplot(data = books) +
@@ -64,6 +75,37 @@ author_bar <- ggplot(data = books) +
            position = "fill") +
   labs(title = "Authors' Proportions of Pages Read")
 print(author_bar)
+
+# Bar chart of genres
+unique_genres <- sort(unique(books$genre))
+genres <- data.frame()
+for (i in 1:length(unique_genres)) {
+  genres[2 * i - 1, "genre"] <- unique_genres[i]
+  genres[2 * i - 1, "type"] <- "# of Books"
+  genres[2 * i - 1, "weight"] <- length(which(books$genre == unique_genres[i])) / nrow(books)
+  
+  genres[2 * i, "genre"] <- unique_genres[i]
+  genres[2 * i, "type"] <- "# of Pages"
+  genres[2 * i, "weight"] <- sum(books$pages[which(books$genre == unique_genres[i])]) / sum(books$pages)
+}
+genre_bar <- ggplot(data = genres) +
+  theme_fivethirtyeight() +
+  geom_bar(mapping = aes(x = type, y = weight, fill = genre), stat = "identity") +
+  labs(title = "Genre Breakdown, Weighted by")
+print(genre_bar)
+
+# Genre mean page lengths
+genre_lengths <- ggplot(data = aggregate(pages ~ genre, books, mean)) +
+  geom_bar(mapping = aes(x = genre, y = pages, fill = genre), stat = "identity")
+print(genre_lengths)
+
+# Genres read in order
+genres_bar <- ggplot(data = books) +
+  geom_bar(mapping = aes(x = order, y = pages, fill = genre),
+           stat = "identity") +
+  geom_hline(yintercept = mean(books$pages)) +
+  labs(title = "Genres Read in Order")
+print(genres_bar)
 
 
 # 
@@ -109,3 +151,25 @@ year_hist <- ggplot(data = books) +
   scale_y_continuous(breaks = seq(0, 15, 3)) +
   labs(title = "Distribution of Publication Years")
 print(year_hist)
+
+# Bar chart of pages read in order
+pages_bar <- ggplot(data = books) +
+  theme_fivethirtyeight(base_size = 24) +
+  geom_bar(mapping = aes(x = order, y = pages, fill = genre),
+           stat = "identity") +
+  geom_hline(yintercept = mean(books$pages),
+             color = "#8b8b8b",
+             linetype = "solid",
+             size = 2) +
+  labs(title = "Book Page Lengths, in Order Read") +
+  scale_fill_manual(name = "Genre", values = rev(brewer.pal(length(unique_genres), "Spectral"))) +
+  geom_text(mapping = aes(x = 3, y = 400, label = "Mean"), color = "#8b8b8b", size = 12)
+print(pages_bar)
+
+# Refined bar chart of genres
+genre_bar_final <- ggplot(data = genres) +
+  theme_fivethirtyeight(base_size = 24) +
+  geom_bar(mapping = aes(x = type, y = weight, fill = genre), stat = "identity") +
+  scale_fill_manual(name = "Genre", values = rev(brewer.pal(length(unique_genres), "Spectral"))) +
+  labs(title = "Genre Breakdown, Weighted by")
+print(genre_bar_final)

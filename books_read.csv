@@ -1,27 +1,27 @@
-title,author,year.published,pages,order
-How Charts Lie,Alberto Cairo,2019,256,1
-Raised in Captivity,Chuck Klosterman,2019,320,2
-Up in the Air,Walter Kirn,2001,320,3
-This Is How You Lose the Time War,Amal El-Mohtar & Max Gladstone,2019,209,4
-The Test,Sylvain Neuvel,2019,108,5
-The Bell Jar,Sylvia Plath,1963,294,6
-The Brief and Frightening Reign of Phil,George Saunders,2005,130,7
-Recursion,Blake Crouch,2019,336,8
-Anathem,Neal Stephenson,2008,937,9
-The Three Body Problem,Liu Cixin,2006,399,10
-The Dark Forest,Liu Cixin,2008,512,11
-Death's End,Liu Cixin,2010,604,12
-Exhalation: Stories,Ted Chiang,2019,352,13
-I Am Legend,Richard Matheson,1954,160,14
-Finna,Nino Cipri,2020,144,15
-Stories of Your Life and Others,Ted Chiang,2002,281,16
-Underland,Robert Macfarlane,2019,496,17
-Full Exposure,Amy Jo Cousins,2015,78,18
-Sandworm,Andy Greenberg,2019,368,19
-Never Let Me Go,Kazuo Ishiguro,2005,288,20
-The End of Trust (McSweeney's #54),Assorted Authors,2018,343,21
-Death Comes for the Archbishop,Willa Cather,1927,297,22
-The Oracle Year,Charles Soule,2018,416,23
-I Was a Child,Bruce Eric Kaplan,2015,208,24
-Snow Crash,Neal Stephenson,1992,559,25
-The Midnight Library,Matt Haig,2020,288,26
+title,author,year.published,pages,order,genre
+How Charts Lie,Alberto Cairo,2019,256,1,Nonfiction
+Raised in Captivity,Chuck Klosterman,2019,320,2,Fiction
+Up in the Air,Walter Kirn,2001,320,3,Fiction
+This Is How You Lose the Time War,Amal El-Mohtar & Max Gladstone,2019,209,4,Sci-Fi
+The Test,Sylvain Neuvel,2019,108,5,Sci-Fi
+The Bell Jar,Sylvia Plath,1963,294,6,Classics
+The Brief and Frightening Reign of Phil,George Saunders,2005,130,7,Fiction
+Recursion,Blake Crouch,2019,336,8,Sci-Fi
+Anathem,Neal Stephenson,2008,937,9,Sci-Fi
+The Three Body Problem,Liu Cixin,2006,399,10,Sci-Fi
+The Dark Forest,Liu Cixin,2008,512,11,Sci-Fi
+Death's End,Liu Cixin,2010,604,12,Sci-Fi
+Exhalation: Stories,Ted Chiang,2019,352,13,Short Stories
+I Am Legend,Richard Matheson,1954,160,14,Horror
+Finna,Nino Cipri,2020,144,15,Sci-Fi
+Stories of Your Life and Others,Ted Chiang,2002,281,16,Sci-Fi
+Underland,Robert Macfarlane,2019,496,17,Nonfiction
+Full Exposure,Amy Jo Cousins,2015,78,18,Romance
+Sandworm,Andy Greenberg,2019,368,19,Nonfiction
+Never Let Me Go,Kazuo Ishiguro,2005,288,20,Fiction
+The End of Trust (McSweeney's #54),Assorted Authors,2018,343,21,Nonfiction
+Death Comes for the Archbishop,Willa Cather,1927,297,22,Fiction
+The Oracle Year,Charles Soule,2018,416,23,Sci-Fi
+I Was a Child,Bruce Eric Kaplan,2015,208,24,Autobiography
+Snow Crash,Neal Stephenson,1992,559,25,Sci-Fi
+The Midnight Library,Matt Haig,2020,288,26,Fiction
